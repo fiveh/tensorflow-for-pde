@@ -17,8 +17,6 @@ def DisplayArray(a, fmt='jpeg', rng=[0, 1]):
     f = BytesIO()
     PIL.Image.fromarray(a).save(f, fmt)
     clear_output(wait=True)
-    print(Image(data=f.getvalue()))
-    exit(0)
     display(Image(data=f.getvalue()))
 
 
@@ -61,8 +59,6 @@ for n in range(40):
     u_init[a, b] = np.random.uniform()
 
 
-# print(u_init[0])
-# exit(0)
 # DisplayArray(u_init, rng=[-0.1, 0.1])
 
 
@@ -91,12 +87,16 @@ tf.global_variables_initializer().run()
 
 wt=1
 # Run 1000 steps of PDE
-for i in range(1000):
+R = 3000
+for i in range(R):
     # Step simulation
     step.run({eps: 0.03, damping: 0.04})
-    # print(U.eval())
-    cv2.imshow('basic', U.eval())
-    if i == 999:
+    print(i)
+    img = U.eval()
+    cv2.putText(img, str(i), (50, 50), cv2.FONT_HERSHEY_COMPLEX, 0.5, 1)
+
+    cv2.imshow('KDE', img)
+    if i == R-1:
         wt = 0
     cv2.waitKey(wt)
 
