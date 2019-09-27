@@ -7,7 +7,7 @@
 1. Clone project
 2. bash: virtualenv venv
 3. bash: source venv/bin/activate
-4. pip install -r requirements.txt
+4. bash: pip install -r requirements.txt
 ```
 
 Andrey Miroshnichenko Moscow 2019. 
