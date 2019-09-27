@@ -5,3 +5,4 @@ tensorflow-gpu==1.11
 pillow
 IPython
 opencv-python
+pycuda
